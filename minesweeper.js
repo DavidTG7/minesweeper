@@ -1,4 +1,4 @@
-const TILE_STATUS = {
+export const TILE_STATUS = {
   HIDDEN: "hidden",
   MINE: "mine",
   NUMBER: "number",
@@ -34,6 +34,14 @@ export const createBoard = (boardSize, numberOfMine) => {
   }
 
   return board;
+};
+
+export const markTile = (tile) => {
+  if (tile.status !== TILE_STATUS.HIDDEN && tile.status !== TILE_STATUS.MARKED)
+    return;
+
+  if (tile.status === TILE_STATUS.MARKED) tile.status = TILE_STATUS.HIDDEN;
+  else tile.status = TILE_STATUS.MARKED;
 };
 
 const getMinePositions = (boardSize, numberOfMines) => {
