@@ -76,3 +76,12 @@ body {
   background: #333;
   color: aliceblue;
 }
+
+footer {
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: aquamarine;
+}
