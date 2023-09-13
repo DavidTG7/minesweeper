@@ -64,6 +64,27 @@ export const revealTile = (board, tile) => {
   }
 };
 
+export const checkWin = (board) => {
+  return board.every((row) => {
+    return row.every((tile) => {
+      return (
+        tile.status === TILE_STATUS.NUMBER ||
+        (tile.mine &&
+          (tile.status === TILE_STATUS.HIDDEN ||
+            tile.status === TILE_STATUS.MARKED))
+      );
+    });
+  });
+};
+
+export const checkLose = (board) => {
+  return board.some((row) => {
+    return row.some((tile) => {
+      return tile.status === TILE_STATUS.MINE;
+    });
+  });
+};
+
 const getMinePositions = (boardSize, numberOfMines) => {
   const positions = [];
 
