@@ -50,7 +50,7 @@ body {
 }
 
 .board > [data-status="mine"] {
-  background-color: red;
+  background-color: darkred;
 }
 
 .board > [data-status="number"] {
@@ -59,4 +59,20 @@ body {
 
 .board > [data-status="marked"] {
   background-color: yellow;
+}
+
+.restart-button {
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  transition: 0.2s;
+}
+
+.restart-button:hover {
+  background: #333;
+  color: aliceblue;
 }
