@@ -44,6 +44,26 @@ export const markTile = (tile) => {
   else tile.status = TILE_STATUS.MARKED;
 };
 
+export const revealTile = (board, tile) => {
+  if (tile.status !== TILE_STATUS.HIDDEN) return;
+
+  if (tile.mine) {
+    tile.status = TILE_STATUS.MINE;
+    return;
+  }
+
+  tile.status = TILE_STATUS.NUMBER;
+
+  const adjacentsTiles = nearbyTiles(board, tile);
+  const mines = adjacentsTiles.filter((t) => t.mine);
+
+  if (mines.length === 0) {
+    adjacentsTiles.forEach(revealTile.bind(null, board));
+  } else {
+    tile.cell.textContent = mines.length;
+  }
+};
+
 const getMinePositions = (boardSize, numberOfMines) => {
   const positions = [];
 
@@ -67,4 +87,17 @@ const positionMatch = (a, b) => {
 
 const randomNumber = (size) => {
   return Math.floor(Math.random() * size);
+};
+
+const nearbyTiles = (board, { x, y }) => {
+  const tiles = [];
+
+  for (let xOffset = -1; xOffset <= 1; xOffset++) {
+    for (let yOffset = -1; yOffset <= 1; yOffset++) {
+      const tile = board[x + xOffset]?.[y + yOffset];
+      if (tile) tiles.push(tile);
+    }
+  }
+
+  return tiles;
 };
