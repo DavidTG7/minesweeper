@@ -86,7 +86,7 @@ footer a {
   color: aquamarine;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .board {
     grid-template-columns: repeat(var(--size), 30px);
     grid-template-rows: repeat(var(--size), 30px);
